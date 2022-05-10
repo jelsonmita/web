@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Profile</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/css/feathericon.min.css">
+
+    <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+
+        <div class="header">
+
+            <div class="header-left">
+                <a class="logo" href="index.html">JL*<span>Clínica</span>.</a>
+            </div>
+
+            <a class="mobile_btn" id="mobile_btn">
+                <i class="fa fa-bars"></i>
+            </a>
+
+
+            <ul class="nav user-menu">
+
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                        <span class="user-img"><img class="rounded-circle" src="assets/img/profiles/avatar-01.jpg" width="31" alt="Seema Sisty"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img src="assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                                <h6>Seema Sisty</h6>
+                                <p class="text-muted mb-0">Usuario</p>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" href="user-profile.html">My Profile</a>
+                        <a class="dropdown-item" href="logout.html">Logout</a>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Dados Pessoais</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Pagina Inicial</a></li>
+                                <li class="breadcrumb-item active">Perfil de usuario</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row settings-tab">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header all-center">
+                                <a href="user-profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="https://github.com/jelsonmita.png" alt="User Image">
+                                    <i class="fe fe-camera"></i>
+                                </a>
+                                <h6>Seema Sisty</h6>
+                                <p>Usuario</p>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="profile-list">
+                                    <a href="#"><i class="fe fe-mail"></i></a>
+                                    <a href="#">Email</a>
+                                    <a href="#" class="float-end">
+                                        <h5>10, 203</h5>
+                                    </a>
+                                </div>
+                                <div class="profile-list">
+                                    <a href="#"><i class="fe fe-phone"></i></a>
+                                    <a href="#">Telemovel</a>
+                                    <a href="#" class="float-end">
+                                        <h5>403</h5>
+                                    </a>
+                                </div>
+                                <div class="profile-list">
+                                    <a href="#"><i class="fe fe-camera"></i></a>
+                                    <a href="#">B.I</a>
+                                    <a href="#" class="float-end">
+                                        <h5>103</h5>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Informacoes adicionais</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="#">
+                                    <div class="form-group">
+                                        <label>Idade</label>
+                                        <input disabled type="text" class="form-control" value="Seemasisty">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Genero</label>
+                                        <input disabled type="email" class="form-control" value="sisty@gmail.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Morada</label>
+                                        <input disabled type="text" class="form-control" value="Seema">
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="row settings-tab">
+                    <h4>Consultas Marcadas</h4>
+                    <div class="card card-table flex-fill">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Paciente</th>
+                                            <th>Genero</th>
+                                            <th>Idade</th>
+                                            <th>Situacao</th>
+                                            <th>Hora</th>
+                                            <th>Data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="user-profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-16.jpg" alt="User Image"></a>
+                                                    <a href="#" class="p-1">John Lee <span>#genero</span></a>
+                                                    <a href="#"><span>#idade</span> <span>#phone</span></a>
+                                                </h2>
+                                            </td>
+                                            <td>01 Oct 2019</td>
+                                            <td>01.00 PM</td>
+                                            <td>03.54 PM</td>
+                                            <td>11.00 PM</td>
+                                            <td>374844676</td>
+                                            <td>
+                                                <div class="actions">
+                                                    <a href="#" class="btn btn-sm bg-success-light me-2" title="View History">
+                                                        <span>data | pendente</span>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

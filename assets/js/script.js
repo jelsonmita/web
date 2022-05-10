@@ -1,197 +1,33 @@
-class Validator {
-
-    constructor() {
-      this.validations = [
-        'data-min-length',
-        'data-max-length',
-        'data-only-letters',
-        'data-email-validate',
-        'data-required',
-        'data-equal',
-        'data-password-validate',
-      ]
-    }
-  
-    // inicia a validação de todos os campos
-    validate(form) {
-  
-      // limpa todas as validações antigas
-      let currentValidations = document.querySelectorAll('form .error-validation');
-  
-      if(currentValidations.length) {
-        this.cleanValidations(currentValidations);
-      }
-  
-      // pegar todos inputs
-      let inputs = form.getElementsByTagName('input');
-      // transformar HTMLCollection em arr
-      let inputsArray = [...inputs];
-  
-      // loop nos inputs e validação mediante aos atributos encontrados
-      inputsArray.forEach(function(input, obj) {
-  
-        // fazer validação de acordo com o atributo do input
-        for(let i = 0; this.validations.length > i; i++) {
-          if(input.getAttribute(this.validations[i]) != null) {
-  
-            // limpa string para saber o método
-            let method = this.validations[i].replace("data-", "").replace("-", "");
-  
-            // valor do input
-            let value = input.getAttribute(this.validations[i])
-  
-            // invoca o método
-            this[method](input,value);
-  
-          }
-        }
-  
-      }, this);
-  
-    }
-  
-    // método para validar se tem um mínimo de caracteres
-    minlength(input, minValue) {
-  
-      let inputLength = input.value.length;
-  
-      let errorMessage = `O campo precisa ter pelo menos ${minValue} caracteres`;
-  
-      if(inputLength < minValue) {
-        this.printMessage(input, errorMessage);
-      }
-  
-    }
-  
-    // método para validar se passou do máximo de caracteres
-    maxlength(input, maxValue) {
-  
-      let inputLength = input.value.length;
-  
-      let errorMessage = `O campo precisa ter menos que ${maxValue} caracteres`;
-  
-      if(inputLength > maxValue) {
-        this.printMessage(input, errorMessage);
-      }
-  
-    }
-  
-    // método para validar strings que só contem letras
-    onlyletters(input) {
-  
-      let re = /^[A-Za-z]+$/;;
-  
-      let inputValue = input.value;
-  
-      let errorMessage = `Este campo não aceita números nem caracteres especiais`;
-  
-      if(!re.test(inputValue)) {
-        this.printMessage(input, errorMessage);
-      }
-  
-    }
-
-    // método para validar e-mail
-    emailvalidate(input) {
-      let re = /\S+@\S+\.\S+/;
-  
-      let email = input.value;
-  
-      let errorMessage = `Insira um e-mail no padrão jelsonmita0@email.com`;
-  
-      if(!re.test(email)) {
-        this.printMessage(input, errorMessage);
-      }
-  
-    }
-  
-    // verificar se um campo está igual o outro
-    equal(input, inputName) {
-  
-      let inputToCompare = document.getElementsByName(inputName)[0];
-  
-      let errorMessage = `Este campo precisa estar igual ao ${inputName}`;
-  
-      if(input.value != inputToCompare.value) {
-        this.printMessage(input, errorMessage);
-      }
-    }
-    
-    // método para exibir inputs que são necessários
-    required(input) {
-  
-      let inputValue = input.value;
-  
-      if(inputValue === '') {
-        let errorMessage = `Este campo é obrigatório`;
-  
-        this.printMessage(input, errorMessage);
-      }
-  
-    }
-  
-    // validando o campo de senha
-    passwordvalidate(input) {
-  
-      // explodir string em array
-      let charArr = input.value.split("");
-  
-      let uppercases = 0;
-      let numbers = 0;
-  
-      for(let i = 0; charArr.length > i; i++) {
-        if(charArr[i] === charArr[i].toUpperCase() && isNaN(parseInt(charArr[i]))) {
-          uppercases++;
-        } else if(!isNaN(parseInt(charArr[i]))) {
-          numbers++;
-        }
-      }
-  
-      if(uppercases === 0 || numbers === 0) {
-        let errorMessage = `A senha precisa um caractere maiúsculo e um número`;
-  
-        this.printMessage(input, errorMessage);
-      }
-  
-    }
-  
-    // método para imprimir mensagens de erro
-    printMessage(input, msg) {
-    
-      // checa os erros presentes no input
-      let errorsQty = input.parentNode.querySelector('.error-validation');
-  
-      // imprimir erro só se não tiver erros
-      if(errorsQty === null) {
-        let template = document.querySelector('.error-validation').cloneNode(true);
-  
-        template.textContent = msg;
-    
-        let inputParent = input.parentNode;
-    
-        template.classList.remove('template');
-    
-        inputParent.appendChild(template);
-      }
-  
-    }
-  
-    // remove todas as validações para fazer a checagem novamente
-    cleanValidations(validations) {
-      validations.forEach(el => el.remove());
-    }
-  
-  }
-  
-  let form = document.getElementById('register-form');
-  let submit = document.getElementById('btn-submit');
-  
-  let validator = new Validator();
-  
-  // evento de envio do form, que valida os inputs
-  submit.addEventListener('click', function(e) {
-    e.preventDefault();
-  
-    validator.validate(form);
-  });
-  
+(function($){"use strict";var $wrapper=$('.main-wrapper');var $pageWrapper=$('.page-wrapper');var $slimScrolls=$('.slimscroll');var Sidemenu=function(){this.$menuItem=$('#sidebar-menu a');};function init(){var $this=Sidemenu;$('#sidebar-menu a').on('click',function(e){if($(this).parent().hasClass('submenu')){e.preventDefault();}
+if(!$(this).hasClass('subdrop')){$('ul',$(this).parents('ul:first')).slideUp(350);$('a',$(this).parents('ul:first')).removeClass('subdrop');$(this).next('ul').slideDown(350);$(this).addClass('subdrop');}else if($(this).hasClass('subdrop')){$(this).removeClass('subdrop');$(this).next('ul').slideUp(350);}});$('#sidebar-menu ul li.submenu a.active').parents('li:last').children('a:first').addClass('active').trigger('click');}
+init();$('body').append('<div class="sidebar-overlay"></div>');$(document).on('click','#mobile_btn',function(){$wrapper.toggleClass('slide-nav');$('.sidebar-overlay').toggleClass('opened');$('html').addClass('menu-opened');return false;});$(".sidebar-overlay").on("click",function(){$wrapper.removeClass('slide-nav');$(".sidebar-overlay").removeClass("opened");$('html').removeClass('menu-opened');});if($('.page-wrapper').length>0){var height=$(window).height();$(".page-wrapper").css("min-height",height);}
+$(window).resize(function(){if($('.page-wrapper').length>0){var height=$(window).height();$(".page-wrapper").css("min-height",height);}});if($('.select').length>0){$('.select').select2({minimumResultsForSearch:-1,width:'100%'});}
+if($('.datetimepicker').length>0){$('.datetimepicker').datetimepicker({format:'DD/MM/YYYY',icons:{up:"fa fa-angle-up",down:"fa fa-angle-down",next:'fa fa-angle-right',previous:'fa fa-angle-left'}});$('.datetimepicker').on('dp.show',function(){$(this).closest('.table-responsive').removeClass('table-responsive').addClass('temp');}).on('dp.hide',function(){$(this).closest('.temp').addClass('table-responsive').removeClass('temp')});}
+if($('[data-toggle="tooltip"]').length>0){$('[data-toggle="tooltip"]').tooltip();}
+if($('.datatable').length>0){$('.datatable').DataTable({"bFilter":false,});}
+if($('.clickable-row').length>0){$(document).on('click','.clickable-row',function(){window.location=$(this).data("href");});}
+$(document).on('click','#check_all',function(){$('.checkmail').click();return false;});if($('.checkmail').length>0){$('.checkmail').each(function(){$(this).on('click',function(){if($(this).closest('tr').hasClass('checked')){$(this).closest('tr').removeClass('checked');}else{$(this).closest('tr').addClass('checked');}});});}
+$(document).on('click','.mail-important',function(){$(this).find('i.fa').toggleClass('fa-star').toggleClass('fa-star-o');});if($('.summernote').length>0){$('.summernote').summernote({height:200,minHeight:null,maxHeight:null,focus:false});}
+if($('.proimage-thumb li a').length>0){var full_image=$(this).attr("href");$(".proimage-thumb li a").click(function(){full_image=$(this).attr("href");$(".pro-image img").attr("src",full_image);$(".pro-image img").parent().attr("href",full_image);return false;});}
+if($('#pro_popup').length>0){$('#pro_popup').lightGallery({thumbnail:true,selector:'a'});}
+if($slimScrolls.length>0){$slimScrolls.slimScroll({height:'auto',width:'100%',position:'right',size:'7px',color:'#ccc',allowPageScroll:false,wheelStep:10,touchScrollStep:100});var wHeight=$(window).height()-60;$slimScrolls.height(wHeight);$('.sidebar .slimScrollDiv').height(wHeight);$(window).resize(function(){var rHeight=$(window).height()-60;$slimScrolls.height(rHeight);$('.sidebar .slimScrollDiv').height(rHeight);});}
+if($('#vmap').length>0){$('#vmap').vectorMap({map:'world_en',backgroundColor:'#333333',color:'#ffffff',hoverOpacity:0.7,selectedColor:'#666666',enableZoom:true,showTooltip:true,scaleColors:['#C8EEFF','#006491'],normalizeFunction:'polynomial'});}
+if($('#vmap').length>0){$('#vmapusa').vectorMap({map:'usa_en',enableZoom:true,showTooltip:true,selectedColor:null,hoverColor:null,colors:{mo:'#C9DFAF',fl:'#C9DFAF',or:'#C9DFAF'},onRegionClick:function(event,code,region){event.preventDefault();}});}
+$(document).on('click','#toggle_btn',function(){if($('body').hasClass('mini-sidebar')){$('body').removeClass('mini-sidebar');$('.subdrop + ul').slideDown();}else{$('body').addClass('mini-sidebar');$('.subdrop + ul').slideUp();}
+return false;});$(document).on('mouseover',function(e){e.stopPropagation();if($('body').hasClass('mini-sidebar')&&$('#toggle_btn').is(':visible')){var targ=$(e.target).closest('.sidebar').length;if(targ){$('body').addClass('expand-menu');$('.subdrop + ul').slideDown();}else{$('body').removeClass('expand-menu');$('.subdrop + ul').slideUp();}
+return false;}});$(document).on('click','.skin-sett-icon',function(){$('.skin-settings').toggleClass("active");});if($('#demoSettings').length===0){$('.main-wrapper').append('<div class="skin-settings" id="demoSettings">'+
+'<div class="skin-sett-icon"><i class="fa fa-cog"></i></div>'+
+'<div class="skin-sett-body">'+
+'<h4>Template Colors</h4>'+
+'<ul class="skin-colors">'+
+'<li><a class="skin-purple" data-color="default" href="#"></a></li>'+
+'<li><a class="skin-red" data-color="red" href="#"></a></li>'+
+'<li><a class="skin-teal" data-color="teal" href="#"></a></li>'+
+'<li><a class="skin-orange" data-color="orange" href="#"></a></li>'+
+'</ul>'+
+'</div>'+
+'</div>')}
+const hasTemp=localStorage.getItem('skin-color');if(!!hasTemp){$('head').append('<link id="tempSkin" rel="stylesheet" href="assets/css/style-'+hasTemp+'.css">')
+$('body').find('.skin-colors a').each(function(){const name=$(this).attr('data-color');if(name===hasTemp){$(this).addClass('active');}else{$(this).removeClass('active');}})}else{$('body').find('.skin-colors a').each(function(){const name=$(this).attr('data-color');if(name==='default'){$(this).addClass('active');}});}
+$(document).on('click','.skin-colors a',function(e){e.preventDefault();$(this).parent().siblings().find('a').removeClass('active');$(this).addClass('active');var skin=$(this).attr('data-color');if(skin==='default'){localStorage.removeItem('skin-color');$('#tempSkin').remove();}else{if($('#tempSkin').length===0){$('head').append('<link id="tempSkin" rel="stylesheet" href="assets/css/style-'+skin+'.css">')}else{$('#tempSkin').attr('href','assets/css/style-'+skin+'.css');}
+localStorage.setItem('skin-color',skin);}})})(jQuery);
